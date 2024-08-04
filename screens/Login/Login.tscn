@@ -1,0 +1,62 @@
+[gd_scene load_steps=3 format=3 uid="uid://cf8mrtg2dbtxs"]
+
+[ext_resource type="Script" path="res://screens/Login/Login.gd" id="1_5ltc3"]
+[ext_resource type="Texture2D" uid="uid://wkabbulclbwd" path="res://screens/Settings/gear.png" id="2_ikucu"]
+
+[node name="Login" type="Node2D"]
+position = Vector2(2.08165e-12, 2.08165e-12)
+script = ExtResource("1_5ltc3")
+
+[node name="Container" type="VBoxContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -295.0
+offset_top = -218.0
+offset_right = 294.0
+offset_bottom = 218.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="ClientIdLineEdit" type="LineEdit" parent="Container"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+placeholder_text = "Client ID"
+
+[node name="MarginContainer" type="MarginContainer" parent="Container"]
+custom_minimum_size = Vector2(2.08165e-12, 25)
+layout_mode = 2
+
+[node name="ClientSecretLineEdit" type="LineEdit" parent="Container"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+placeholder_text = "Client Secret"
+
+[node name="MarginContainer2" type="MarginContainer" parent="Container"]
+custom_minimum_size = Vector2(2.08165e-12, 25)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Container"]
+layout_mode = 2
+
+[node name="ConnectButton" type="Button" parent="Container/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 64
+text = "Connect"
+
+[node name="MarginContainer3" type="MarginContainer" parent="Container/HBoxContainer"]
+custom_minimum_size = Vector2(25, 2.08165e-12)
+layout_mode = 2
+
+[node name="SettingsButton" type="Button" parent="Container/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+icon = ExtResource("2_ikucu")
+
+[connection signal="button_up" from="Container/HBoxContainer/ConnectButton" to="." method="_on_connect_button_button_up"]
+[connection signal="pressed" from="Container/HBoxContainer/SettingsButton" to="." method="_on_settings_button_pressed"]

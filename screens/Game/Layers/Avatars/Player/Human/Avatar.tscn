@@ -1,0 +1,156 @@
+[gd_scene load_steps=16 format=3 uid="uid://pxfhw2oexqxc"]
+
+[ext_resource type="Material" uid="uid://bpqowuery5pb0" path="res://screens/Game/Layers/Avatars/Player/ExplosionParticleProcessMaterial.tres" id="2_pjhpy"]
+[ext_resource type="Texture2D" uid="uid://b77gfhs8bk6jx" path="res://screens/Game/Layers/Avatars/Player/Human/images/Sprite.png" id="2_vo1ca"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g1i8k"]
+atlas = ExtResource("2_vo1ca")
+region = Rect2(640, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_566kq"]
+atlas = ExtResource("2_vo1ca")
+region = Rect2(704, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j7bmw"]
+atlas = ExtResource("2_vo1ca")
+region = Rect2(128, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_flwul"]
+atlas = ExtResource("2_vo1ca")
+region = Rect2(160, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gjaun"]
+atlas = ExtResource("2_vo1ca")
+region = Rect2(192, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yesfb"]
+atlas = ExtResource("2_vo1ca")
+region = Rect2(224, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k5242"]
+atlas = ExtResource("2_vo1ca")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d6clx"]
+atlas = ExtResource("2_vo1ca")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pwhca"]
+atlas = ExtResource("2_vo1ca")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oooe1"]
+atlas = ExtResource("2_vo1ca")
+region = Rect2(96, 32, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vfhnl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g1i8k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_566kq")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j7bmw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_flwul")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gjaun")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yesfb")
+}],
+"loop": true,
+"name": &"jumping",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k5242")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d6clx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pwhca")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oooe1")
+}],
+"loop": true,
+"name": &"walking",
+"speed": 5.0
+}]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_76gkg"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m87oi"]
+content_margin_left = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 2.0
+bg_color = Color(1, 0.870588, 0.0196078, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+expand_margin_top = 5.0
+expand_margin_bottom = 5.0
+
+[node name="Avatar" type="CharacterBody2D"]
+position = Vector2(0, -15)
+
+[node name="Username" type="Label" parent="."]
+offset_left = -20.0
+offset_top = -105.0
+offset_right = 20.0
+offset_bottom = -82.0
+
+[node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -48)
+scale = Vector2(4.32812, 4.32812)
+sprite_frames = SubResource("SpriteFrames_vfhnl")
+animation = &"idle"
+frame_progress = 0.207527
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 49.0
+offset_top = -127.0
+offset_right = 246.0
+offset_bottom = -24.0
+grow_vertical = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_76gkg")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="PanelContainer"]
+position = Vector2(99, 56.4)
+emitting = false
+amount = 200
+process_material = ExtResource("2_pjhpy")
+lifetime = 0.4
+one_shot = true
+explosiveness = 0.8
+
+[node name="ChatMessage" type="Label" parent="PanelContainer"]
+visible = false
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.0980392)
+theme_override_font_sizes/font_size = 12
+theme_override_styles/normal = SubResource("StyleBoxFlat_m87oi")
+text = "There are 10 types of people: those who understand binary, and those who don't."
+vertical_alignment = 2
+autowrap_mode = 2

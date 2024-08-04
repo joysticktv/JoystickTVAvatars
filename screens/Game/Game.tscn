@@ -1,0 +1,45 @@
+[gd_scene load_steps=7 format=3 uid="uid://tc3e05a4ypga"]
+
+[ext_resource type="Script" path="res://screens/Game/Game.gd" id="1_1efta"]
+[ext_resource type="Texture2D" uid="uid://wkabbulclbwd" path="res://screens/Settings/gear.png" id="2_l3xkx"]
+[ext_resource type="PackedScene" uid="uid://dihefwyc30e0l" path="res://screens/Game/Layers/Avatars/Avatars.tscn" id="4_ok8vt"]
+[ext_resource type="Script" path="res://screens/Settings/TestChatMessageButton.gd" id="5_ghpls"]
+[ext_resource type="Script" path="res://screens/Settings/TestEnterStreamButton.gd" id="6_oe8dv"]
+[ext_resource type="Script" path="res://socket/WebSocket.gd" id="6_tc81m"]
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_1efta")
+
+[node name="SettingsButton" type="Button" parent="."]
+self_modulate = Color(1, 1, 1, 0.0980392)
+offset_right = 8.0
+offset_bottom = 8.0
+icon = ExtResource("2_l3xkx")
+metadata/_edit_use_anchors_ = true
+
+[node name="Avatars" parent="." instance=ExtResource("4_ok8vt")]
+
+[node name="TestButtons" type="VBoxContainer" parent="."]
+offset_left = 25.0
+offset_top = 25.0
+offset_right = 321.0
+offset_bottom = 195.0
+
+[node name="TestChatMessageButton" type="Button" parent="TestButtons"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Test Chat Message"
+script = ExtResource("5_ghpls")
+
+[node name="TestEnterStreamButton" type="Button" parent="TestButtons"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Test Enter Stream"
+script = ExtResource("6_oe8dv")
+
+[node name="WebSocket" type="Node" parent="."]
+script = ExtResource("6_tc81m")
+
+[connection signal="pressed" from="SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="TestButtons/TestChatMessageButton" to="TestButtons/TestChatMessageButton" method="_on_pressed"]
+[connection signal="pressed" from="TestButtons/TestEnterStreamButton" to="TestButtons/TestEnterStreamButton" method="_on_pressed"]
